@@ -1,0 +1,144 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{% if error == True %}
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    Päivämäärä on menneisyydessä. Yritä uudelleen.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{% endif %}
+<div class="container-fluid border-bottom">
+    <div class="row mb-4 ">
+        <div class="col-sm">
+            <h4>{{ customer.name }}</h4>
+            <table>
+                <tr>
+                    <td>
+                        Asiakasnumero: {{ customer.erp_id }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Yhteyshenkilöt: {{ customer.contact_person }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Puhelinnumerot: {{ customer.phone_number }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Sähköposti: {{ customer.email }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <form method="GET" action="{{ url_for('customer_update', id = customer.id) }}">
+                            <button class="btn btn-sm btn-outline-info mt-2">Päivitä asiakkaan tietoja</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 border-right ">
+            <h5>Lisää kommentti</h5>
+            <form class="form-group mb-4" method="POST" action=" {{ url_for('customer_page', id = customer.id) }}">
+                {{ form.text(class="form-control", rows="6") }}
+                <input class="btn btn-sm btn-primary mt-1" type="submit" value="Lisää kommentti" />
+            </form>
+
+            {% if no_comments is sameas true %}
+            <div class="card bg-light text-dark text-center">
+                <div class="card-body">
+
+                    <h2 class="text-secondary">EI KOMMENTTEJA</h2>
+
+                </div>
+            </div>
+            {% endif %}
+
+            {% for c in comments %}
+            <div class="card bg-light text-dark mb-2">
+                <div class="card-body">
+                    <p class="card-title">
+                        {{ c.text }}
+                    </p>
+                    {% if logged_in_user.firstname + " " + logged_in_user.surename == c.commentator %}
+                    <form method="GET"
+                        action="{{ url_for('comment_edit', comment_id = c.id, customer_id = customer.id) }}">
+                        <button class="btn btn-sm btn-outline-info float-right">Muokkaa</button>
+                    </form>
+                    {% endif %}
+                    <small class="text-muted"> {{ c.commentator }} <br>
+                        {{ c.date_created.strftime('%d.%m.%Y klo %H:%M:%S') }}
+                    </small>
+                </div>
+            </div>
+            {% endfor %}
+            <br>
+
+        </div>
+        <div class="col-6">
+            <h5>Lisää yhteydenottopyyntö</h5>
+            <form class="form-group mb-4" method="POST" action="{{ url_for('add_task', id = customer.id) }}">
+                {{ taskform.date(class="form-control mb-2", oninvalid="this.setCustomValidity('Sinun on valittava päivämäärä.')", oninput="setCustomValidity('')" )}}
+                {{ taskform.task_comment(class="form-control", rows="4", oninvalid="this.setCustomValidity('Kommenttikenttää ei voi jättää tyhjäksi.')", oninput="setCustomValidity('')", placeholder="Kirjoita tähän sovittu toimenpide...") }}
+                <input class="btn btn-sm btn-primary mt-1" type="submit" value="Lisää yhteydenottopyyntö" />
+            </form>
+
+
+            {% for t in tasks %}
+            <div class="card bg-white text-dark mb-2 border-primary">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        {{ t.date.strftime('%d.%m.%Y') }}
+                    </h5>
+                    <p class="card-text">
+                        {{ t.task_comment }}
+                    </p>
+                    <a class="btn btn-outline-info btn-sm float-right"
+                        href="{{ url_for('show_task', id = t.id) }}">Valitse</a>
+                    <small class="text-muted"> Tallentaja: {{ t.added_by_name }} </small>
+
+                </div>
+            </div>
+            {% else %}
+            <div class="card bg-light text-dark text-center">
+                    <div class="card-body">
+    
+                        <h2 class="text-secondary">EI AJASTETTUJA TEHTÄVIÄ</h2>
+    
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+<br>
+<div class="container">
+    <div class="col">
+
+
+    </div>
+</div>
+
+
+
+{% endblock %}

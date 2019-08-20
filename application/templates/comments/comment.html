@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    kommentin muokkaus - nykyinen kommentti on kopioitu tekstikenttään. <br>
+    tallenna muutokset painamalla 'Päivitä kommentti'
+
+        <form class="form-group mb-1" method="POST"
+            action="{{ url_for('comment_edit', customer_id = customer.id, comment_id = comment.id) }}">
+            {{ form.text(class="form-control", rows="10") }}
+            <input class="btn btn-primary btn-sm mr-1" type="submit" value="Päivitä kommentti" />
+            <a href="{{ url_for('customer_page', id = customer.id)}}" class="btn btn-primary btn-sm">Peruuta</a>
+        </form>
+        <form method="POST" action="{{ url_for('comment_delete', comment_id = comment.id, customer_id = customer.id) }}">
+                <button class="btn btn-danger btn-sm">Poista kommentti</button>
+        </form>
+       
+{% endblock %}

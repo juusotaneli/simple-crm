@@ -1,0 +1,116 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+{% if username_taken == True %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    Annettu käyttäjätunnus on jo käytössä.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endif %}
+
+{% if passwords_dont_match == True %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    Salasanat eivät täsmää.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endif %}
+
+
+<h5 class ="mb-4">Uuden käyttäjän lisääminen</h5>
+
+<form method="POST" action="{{ url_for('auth_create') }}">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>{{ form.firstname.label }}</label>
+            {{ form.firstname (class="form-control col-sm", placeholder="Etunimi")}}
+            <small class="form-text text-muted">*Pakollinen tieto</small>
+            {% if form.firstname.errors|length > 0 %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Etunimessä pitää olla vähintään 2 merkkiä.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>{{ form.surename.label }}</label>
+                {{ form.surename (class="form-control col-sm", placeholder="Sukunimi")}}
+                <small class="form-text text-muted">*Pakollinen tieto</small>
+                {% if form.surename.errors|length > 0 %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Sukunimessä pitää olla vähintään 2 merkkiä.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endif %}
+            </div>
+    
+        </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>{{ form.username.label }}</label>
+            {{ form.username (class="form-control col-sm", placeholder="Käyttäjätunnus")}}
+            <small class="form-text text-muted">*Pakollinen tieto</small>
+            {% if form.username.errors|length > 0 %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Käyttäjätunnuksessa pitää olla vähintään 4 merkkiä.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>{{ form.password.label }}</label>
+            {{ form.password (class="form-control col-sm", placeholder="Salasana")}}
+            <small class="form-text text-muted">*Pakollinen tieto</small>
+            {% if form.password.errors|length > 0 %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Salasanan vähimmäispituus on 10 merkkiä.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>{{ form.re_password.label }}</label>
+                {{ form.re_password (class="form-control col-sm", placeholder="Salasana uudelleen")}}
+                <small class="form-text text-muted">*Pakollinen tieto</small>
+                {% if form.re_password.errors|length > 0 %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Salasanan vähimmäispituus on 10 merkkiä.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label>{{ form.role.label }}</label>
+            {{ form.role (class="form-control col-sm") }}
+            <small class="form-text text-muted">*Pakollinen tieto</small>
+        </div>
+    </div>
+    <input class="btn btn-primary btn-sm" type="submit" value="Lisää uusi käyttäjä" />
+</form>
+
+{% endblock %}

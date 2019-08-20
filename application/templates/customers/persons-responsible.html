@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+{% for p in persons %}
+
+{{ p.name }}
+
+{% endfor %}
+
+<form method="GET" action="{{ url_for('customer_page', id = customer.id) }}">
+        <button class="btn btn-info">Palaa</button>
+</form>
+
+
+
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm">
+        </div>
+        <div class="col-10">
+
+            <h2>Tehtävät</h2>
+
+            {% if show_today is sameas true %}
+            <a href="{{ url_for('show_scheduled_tasks') }}" class="btn btn-secondary btn-sm active">Tänään</a>
+            {% else %}
+            <a href="{{ url_for('show_scheduled_tasks') }}" class="btn btn-sm text-dark">Tänään</a>
+            {% endif %}
+            {% if show_tomorrow is sameas true %}
+            <a href="{{ url_for('show_scheduled_tasks_tomorrow') }}"
+                class="btn btn-secondary btn-sm active">Huomenna</a>
+            {% else %}
+            <a href="{{ url_for('show_scheduled_tasks_tomorrow') }}" class="btn btn-sm text-dark">Huomenna</a>
+            {% endif %}
+            {% if show_week is sameas true %}
+            <a href="{{ url_for('show_scheduled_tasks_week') }}"
+                class="btn btn-secondary btn-sm active">Viikko</a>
+            {% else %}
+            <a href="{{ url_for('show_scheduled_tasks_week') }}" class="btn btn-sm text-dark">Viikko</a>
+            {% endif %}
+            {% if show_month is sameas true %}
+            <a href="{{ url_for('show_scheduled_tasks_month') }}"
+                class="btn btn-secondary btn-sm active">Kuukausi</a>
+            {% else %}
+            <a href="{{ url_for('show_scheduled_tasks_month') }}" class="btn btn-sm text-dark">Kuukausi</a>
+            {% endif %}
+            {% if show_history is sameas true %}
+            <a href="{{ url_for('show_history') }}" class="btn btn-secondary btn-sm active">Valmiit tehtävät</a>
+            {% else %}
+            <a href="{{ url_for('show_history') }}" class="btn btn-sm text-dark">Valmiit tehtävät</a>
+            {% endif %}
+            <br>
+            <br>
+
+            {% for t in range(number_of_tasks) %}
+
+            {% if t == 0  %}
+
+            <h3 class="mt-2 mb-2"> {{ tasks[t].date.strftime("%d.%m.%Y") }} </h3>
+
+            {% elif (t + 1 == number_of_tasks) and (tasks[t].date) != (tasks[t - 1].date) %}
+
+            <h3 class="mt-5 mb-2"> {{ tasks[t].date.strftime("%d.%m.%Y") }} </h3>
+
+
+            {% elif t+1 < number_of_tasks %}
+            {% if (tasks[t].date) != (tasks[t - 1].date) %}
+            <h3 class="mt-5 mb-2"> {{ tasks[t].date.strftime("%d.%m.%Y") }} </h3>
+
+            {% endif %}
+
+            {% endif %}
+
+            <div class="card bg-light text-dark mb-2 border-dark">
+                <div class="card-body">
+                    <h5 class="card-title">{{ tasks[t].customer_name }}
+                    </h5>
+                    <p class="card-text">{{ tasks[t].task_comment }}</p>
+                    {% if (tasks[t].done is sameas false) and (can_be_assigned is sameas true) %}
+                    <a href="{{ url_for('show_task', id = tasks[t].id) }}" class="btn btn-outline-info btn-sm float-right">Valitse</a>
+                    {% endif %}
+                    <small class="text-muted"> Tallentaja: {{ tasks[t].added_by_name }} </small>
+                </div>
+            </div>
+           
+            {% else %}
+            <div class="card bg-light text-dark text-center">
+                <div class="card-body">
+                    <h2 class="text-secondary">EI TEHTÄVIÄ</h2>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="col-sm">
+
+        </div>
+
+
+    </div>
+</div>
+<br>
+
+
+
+{% endblock %}

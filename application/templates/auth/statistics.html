@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h5 class="mb-4">Statistiikkaa</h5>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            Käyttäjien luomat kommentit
+            {{chart|safe}}
+        </div>
+
+        <div class="col-sm">
+            Käyttäjien luomat tehtävät
+            {{chart1|safe}}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

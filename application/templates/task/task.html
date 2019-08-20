@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="card bg-light text-dark">
+    <div class="card-body">
+        <h5 class="card-title">{{ task.date.strftime("%d.%m.%Y") }} </h5>
+        <h5 class="card-subtitle mb-2"> {{ task.customer_name }} </h5>
+        <p class="card-text">{{ task.task_comment }}</p>
+        <form class="form-group" method="POST" action=" {{ url_for('finish_task', id = task.id)}} ">
+            <input class="btn btn-sm btn-success" type="submit" value="Merkitse tehtävä tehdyksi" />
+            <div class="btn-toolbar float-right">
+
+                <div class="btn-group mr-2" role = "group">
+                    <a href="{{ url_for('show_scheduled_tasks')}}" class="btn btn-sm btn-primary ">Takaisin
+                        tehtäväsivulle</a>
+                </div>
+                <div class="btn-group mr-2" role = "group">
+                    <a href="{{ url_for('customer_page', id = task.customer_id)}}" class="btn btn-sm btn-primary ">Asiakassivulle</a>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

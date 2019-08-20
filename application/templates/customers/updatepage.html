@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<form class="col mb-4" method="POST" action="{{ url_for('customer_update', id = customer.id )}}">
+    <h3>Tietojen päivitys</h3>
+    <p>Nykyinen arvo on valmiina tekstikentissä </p>
+    {% if error1 == True %}
+    <div class="alert alert-danger" role="alert">
+        Annetulla nimellä löytyy jo asiakas, kokeile uudelleen
+    </div>
+    {% endif %}
+    {% if error2 == True %}
+    <div class="alert alert-danger" role="alert">
+        Annetulla erp id:llä löytyy jo asiakas, kokeile uudelleen
+    </div>
+    {% endif %}
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>{{ form.name.label }}</label>
+            {{ form.name (class="form-control col-sm", value = customer.name)}}
+            <small class="form-text text-muted">*Pakollinen tieto</small>
+        </div>
+        <div class="form-group col-md-6">
+            <label>{{ form.erp_id.label }}</label>
+            {{ form.erp_id (class="form-control col-sm", value = customer.erp_id)}}
+            <small class="form-text text-muted">*Pakollinen tieto</small>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>{{ form.route.label }}</label>
+        {{ form.route (class="form-control col-3", value = customer.route)}}
+    </div>
+    <div class="form-group">
+        <label>{{ form.contact_person.label }}</label>
+        {{ form.contact_person (class="form-control col-6", value = customer.contact_person)}}
+    </div>
+    <div class="form-group">
+        <label>{{ form.phone_number.label }}</label>
+        {{ form.phone_number (class="form-control col-6", value = customer.phone_number)}}
+    </div>
+    <div class="form-group">
+        <label>{{ form.email.label }}</label>
+        {{ form.email (class="form-control col-6", value = customer.email)}}
+    </div>
+    <input class="btn btn-success" type="submit" value="Päivitä asiakkaan tiedot"/>
+    <a href="{{ url_for('customer_page', id = customer.id) }}" class="btn btn-primary">Palaa takaisin</a>
+</form>
+
+
+
+{% endblock %}

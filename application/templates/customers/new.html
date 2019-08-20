@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<form class="col mb-4" method="POST" action="{{ url_for('customers_create') }}">
+  {% if error1 == True %}
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    Annetulla nimellä löytyy jo asiakas - kokeile uudelleen
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  {% endif %}
+  {% if error2 == True %}
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    Annetulla asiakasnumerolla löytyy jo asiakas - kokeile uudelleen
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  {% endif %}
+  <h5 class ="mb-4">Asiakkaan lisääminen</h5>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>{{ form.name.label }}</label>
+      {{ form.name (class="form-control col-sm", placeholder="Kopioi nimi Westernistä")}}
+      <small class="form-text text-muted">*Pakollinen tieto</small>
+      {% if form.name.errors|length > 0 %}
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        Nimikenttää ei voi jättää tyhjäksi.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endif %}
+    </div>
+    <div class="form-group col-md-6">
+      <label>{{ form.erp_id.label }}</label>
+      {{ form.erp_id (class="form-control col-sm", placeholder="Kopioi asiakasnumero Westernistä")}}
+      <small class="form-text text-muted">*Pakollinen tieto</small>
+      {% if form.erp_id.errors|length > 0 %}
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        Asiakasnumeron tulee olla vähintään 4 merkkiä pitkä.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="form-group">
+    <label>{{ form.route.label }}</label>
+    {{ form.route (class="form-control col-3")}}
+  </div>
+  <div class="form-group">
+    <label>{{ form.contact_person.label }}</label>
+    {{ form.contact_person (class="form-control col-6")}}
+  </div>
+  <div class="form-group">
+    <label>{{ form.phone_number.label }}</label>
+    {{ form.phone_number (class="form-control col-6")}}
+  </div>
+  <div class="form-group">
+    <label>{{ form.email.label }}</label>
+    {{ form.email (class="form-control col-6")}}
+  </div>
+  <input class="btn btn-primary btn-sm" type="submit" value="Lisää uusi asiakas" />
+</form>
+</div>
+
+{% endblock %}

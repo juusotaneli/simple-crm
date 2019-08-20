@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block body %}
+
+{% if no_hits is sameas true %}
+
+<h4>Haulla ei löytynyt yhtään asiakasta... :(</h4>
+
+{% else %}
+
+<h4>Tarkoititko jotakin näistä?</h4>
+
+{% for c in customers %}
+<table>
+  <tr>
+    <td>
+      <a href="{{ url_for('customer_page', id = c.id) }}"> {{ c.name }} </a>
+    </td>
+  </tr>
+</table>
+{% endfor %}
+{% endif %}
+
+{% endblock %}
