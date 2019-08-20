@@ -64,7 +64,7 @@ def auth_logout():
 
 
 @app.route("/auth/new", methods=["GET", "POST"])
-#@login_required(role="admin")
+@login_required(role="admin")
 def auth_create():
     if request.method == "GET":
         return render_template("auth/new.html", form=UserForm())
