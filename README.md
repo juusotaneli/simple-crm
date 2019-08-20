@@ -2,6 +2,21 @@
 
 simple-crm -ohjelman tarkoitus on tuoda tukkuliikkeen työntekijöiden käyttöön helppokäyttöinen työkalu, jonka avulla voidaan seurata ja pitää kirjaa asiakkaiden kanssa käytävää komminikaatiota. Ohjelman ydintoiminnalluus on Facebook-sivun kaltainen asiakaskohtainen seinä, jonne asiakaspalvelija voi kirjoittaa asiakkaaseen kohdistuvia kommentteja, liittyen esimerkiksi siihen, mitä asiakaspalvelija on asiakkaan kanssa sopinut viimeiseksi tapahtuneen kontaktoinnin yhteydessä. Toinen ydintoiminnallisuus on ajastetut tehtävät, joita asiakaspalvelija voi lisätä asiakkaalle. Tällainen ajastettu tehtävä voi esimerkiksi olla asiakkaan toivoma seuraava kontaktointiajankohta. Ajastetut tehtävät näkyvät listattuna kaikille ohjelman käyttäjille. Tehtäviä voi listata viidellä eri tasolla: tänään, huomenna, viikko, kuukausi ja käsitellyt tehtävät. Ydintoiminnallisuuksien lisäksi käyttäjien on mahdollista tarkastella omaa ja muiden aktiivisuutta statistiikka toiminnallisuuden avulla.
 
+Sovellusta voi testata [Herokussa](https://simplecrmapp.herokuapp.com/).
+
+Herokuun on valmiiksi luotu seuraavat tunnukset, joilla voi kirjautua sisään
+
+| Käyttäjätunnus| Salasana      | Rooli |
+| ------------- |:-------------:| -----:|
+| admin         | testitesti    | admin |
+| basic         | testitesti    | basic |   
+
+Lisäksi järjestelmään on tallennettu seuraavat asiakkaat:
+
+Testiasiakas Oy Ab
+Parasfirma Oyj
+
+
 ## Tekninen toteutus
 
 ### Frontend
@@ -94,9 +109,9 @@ koodilla
 
 ## Linkkejä
 
-[Käyttöohje](https://github.com/juusotaneli/minicrm/blob/master/documentation/käyttöohje.md)
+[Käyttöohje](https://github.com/juusotaneli/simple-crm/blob/master/documentation/k%C3%A4ytt%C3%B6ohje.md)
 
-[Heroku](https://kalatukku.herokuapp.com)
+[Heroku](https://simplecrmapp.herokuapp.com/)
 
 
 
