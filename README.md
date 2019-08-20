@@ -13,8 +13,7 @@ Herokuun on valmiiksi luotu seuraavat tunnukset, joilla voi kirjautua sisään
 
 Lisäksi järjestelmään on tallennettu seuraavat asiakkaat:
 
-Testiasiakas Oy Ab
-Parasfirma Oyj
+**Testiasiakas Oy Ab** & **Parasfirma Oyj**
 
 
 ## Tekninen toteutus
