@@ -11,9 +11,7 @@ Herokuun on valmiiksi luotu seuraavat tunnukset, joilla voi kirjautua sisään
 | admin         | testitesti    | admin |
 | basic         | testitesti    | basic |   
 
-Lisäksi järjestelmään on tallennettu seuraavat asiakkaat:
-
-**Testiasiakas Oy Ab** & **Parasfirma Oyj**
+Lisäksi järjestelmään on tallennettu seuraavat asiakkaat: **Testiasiakas Oy Ab** ja **Parasfirma Oyj**
 
 
 ## Tekninen toteutus
