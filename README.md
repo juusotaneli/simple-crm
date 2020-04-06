@@ -37,7 +37,7 @@ Lokaalisti SQLite, Herokussa PostgreSQL
 
 - Salasanat tallennetaan tietokantaan hashatussa muodossa. 
 
-- Kirjautumisyritykset on rajoitettu kolmeen (3), jonka jälkeen tili lukkiutuu pysyvästi
+- Kirjautumisyritykset on rajoitettu kolmeen (3), jonka jälkeen tili lukkiutuu pysyvästi (admin voi avata)
 
 - Salasanan pituusvaatimus on 10 merkkiä
 
