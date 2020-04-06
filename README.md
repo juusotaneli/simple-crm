@@ -18,7 +18,7 @@ Lisäksi järjestelmään on tallennettu seuraavat asiakkaat: **Testiasiakas Oy 
 
 ### Frontend
 
-Tavoite oli tehdä asiat mahdollisimman yksinkertaisesti ilman Javascriptiä tai css -tiedostoja. Siksi lähes kaikki on toteutettu Bootstrap -frameworkilla.
+Bootstrap
 
 ### Backend
 
@@ -28,7 +28,7 @@ Python
 
 Lokaalisti SQLite, Herokussa PostgreSQL
 
-**HUOMIO!!!! SOVELLUKSEN KÄYTTÖÖN SUOSITELLAAN CHROMEA TAI FIREFOXIA. MOBIILISTI SOVELLUS ON TODETTU TOIMIVAKSI SAFARILLA**
+**HUOMIO!!!! SOVELLUKSEN KÄYTTÖÖN SUOSITELLAAN CHROMEA TAI FIREFOXIA**
 
 
 ## Tietoturva
